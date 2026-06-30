@@ -2,9 +2,27 @@ require("dotenv").config();
 
 const fs = require("fs");
 const path = require("path");
+const express = require("express");
 const { Client, Collection, GatewayIntentBits } = require("discord.js");
 
-// 🤖 CLIENT
+// =========================
+// 🌐 FAKE SERVER (FIX FOR RENDER)
+// =========================
+const app = express();
+
+app.get("/", (req, res) => {
+    res.send("🌸 MoonSai Bot is alive");
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log("🌐 Web server running on port", PORT);
+});
+
+
+// =========================
+// 🤖 DISCORD CLIENT
+// =========================
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -64,6 +82,6 @@ client.once("ready", () => {
 
 
 // =========================
-// 🔐 LOGIN (ВСЕГДА В КОНЦЕ)
+// 🔐 LOGIN
 // =========================
 client.login(process.env.TOKEN);
