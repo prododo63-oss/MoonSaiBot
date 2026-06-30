@@ -3,10 +3,11 @@ require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
 const express = require("express");
-const { Client, Collection, GatewayIntentBits } = require("discord.js");
+const { Client, Collection, GatewayIntentBits, Events } = require("discord.js");
+
 
 // =========================
-// 🌐 FAKE SERVER (FIX FOR RENDER)
+// 🌐 KEEP ALIVE SERVER (Render fix)
 // =========================
 const app = express();
 
@@ -15,8 +16,9 @@ app.get("/", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
-    console.log("🌐 Web server running on port", PORT);
+    console.log(`🌐 Web server running on port ${PORT}`);
 });
 
 
@@ -74,10 +76,10 @@ if (fs.existsSync(eventsPath)) {
 
 
 // =========================
-// 🟢 READY EVENT
+// 🟢 READY EVENT (NEW DISCORD FIX)
 // =========================
-client.once("ready", () => {
-    console.log(`🌸 MoonSai Bot#0128 запущен!`);
+client.once(Events.ClientReady, (c) => {
+    console.log(`🌸 MoonSai Bot запущен как ${c.user.tag}`);
 });
 
 
