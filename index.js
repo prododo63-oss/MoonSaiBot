@@ -56,14 +56,14 @@ if (fs.existsSync(eventsPath)) {
 
 
 // =========================
-// 🔐 LOGIN
-// =========================
-client.login(process.env.TOKEN);
-
-
-// =========================
-// 🟢 READY LOG
+// 🟢 READY EVENT
 // =========================
 client.once("ready", () => {
     console.log(`🌸 MoonSai Bot#0128 запущен!`);
 });
+
+
+// =========================
+// 🔐 LOGIN (ВСЕГДА В КОНЦЕ)
+// =========================
+client.login(process.env.TOKEN);
